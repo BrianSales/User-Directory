@@ -1,11 +1,13 @@
 import {useEffect, useState} from "react";
 
 function App() {
+  const [employee, setEmployees] = useState("")
   useEffect(()=>{
-    fetch("https://randomuser.me/api/?results=50")
+    fetch("https://randomuser.me/api/?results=30")
     .then(res=>res.json())
     .then(data =>{
-      console.log(data)
+      console.log(data.results)
+
     })
   }) 
   return (
