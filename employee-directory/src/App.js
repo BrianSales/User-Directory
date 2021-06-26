@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 function App() {
   const [employees, setEmployees] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
+  const [sortAsc, setSortAsc] = useState(true)
   useEffect(()=>{
     fetch("https://randomuser.me/api/?results=30")
     .then(res=>res.json())
@@ -20,7 +21,7 @@ function App() {
           <tr>
             <th>name</th>
             <th>email</th>
-            <th>age</th>
+            <th onClick={(event)=>{setSortAsc(!sortAsc)}}>age</th>
             <th>picture</th>
           </tr>
         </thead>
@@ -29,6 +30,12 @@ function App() {
           .filter((employee)=>{
             return employee.email.includes(searchTerm)
 
+          })
+          .sort((employeeA, employeeB)=>{
+            //added a ternary statement to sort employee age
+            return (employeeA.dob.age - employeeB.dob.age) * (sortAsc?1:-1)
+
+            
           })
           .map((employee, index)=>{
             return <tr>
