@@ -1,11 +1,13 @@
-import {useEffect, useState} from "react";
+import {useEffect, React, useState} from "react";
 
 function App() {
   const [employees, setEmployees] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
   const [sortAsc, setSortAsc] = useState(true)
+  
+  
   useEffect(()=>{
-    fetch("https://randomuser.me/api/?results=30")
+    fetch("https://randomuser.me/api/?results=300")
     .then(res=>res.json())
     .then(data =>{
       console.log(data.results)
@@ -54,3 +56,4 @@ function App() {
 }
 
 export default App;
+
